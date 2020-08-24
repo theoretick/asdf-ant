@@ -1,0 +1,12 @@
+stages:
+  - test
+
+test:
+  stage: test
+  image: adoptopenjdk/openjdk11:debian-slim
+  before_script:
+    - apt-get update && apt-get install -y --no-install-recommends ca-certificates curl git
+    - git clone https://github.com/asdf-vm/asdf.git asdf
+    - . asdf/asdf.sh
+  script:
+    - asdf plugin test ant "$CI_PROJECT_URL.git" ant -version
