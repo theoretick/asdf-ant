@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-APACHE_ANT_BASE_URI=https://downloads.apache.org/ant/binaries
+APACHE_ANT_BASE_URI=https://archive.apache.org/dist/ant/binaries
 
 install_ant() {
   local install_type=$1
