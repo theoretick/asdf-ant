@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+APACHE_ANT_BASE_URI=https://downloads.apache.org/ant/binaries
+
+curl --silent --location $APACHE_ANT_BASE_URI | grep -Eo "<a href=\"(apache-ant-([0-9\.-]+).+\.tar\.gz)\">" | sed 's/<a href="apache-ant-//g' | sed 's/-bin\.tar\.gz">//g' | sort -V | xargs

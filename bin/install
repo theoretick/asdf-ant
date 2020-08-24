@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+set -e
+
+APACHE_ANT_BASE_URI=https://downloads.apache.org/ant/binaries
+
+install_ant() {
+  local install_type=$1
+  local install_version=$2
+  local install_path=$3
+
+  local package_dir="apache-ant-${install_version}"
+  local package_filename="${package_dir}-bin.tar.gz"
+
+  case $(uname -s) in
+  Darwin)
+    os="macosx"
+    temp_dir=$(/usr/bin/mktemp -dt asdf-ant)
+    ;;
+  *)
+    os="linux"
+    ;;
+  esac
+
+  case $(uname -m) in
+  x86_64) arch="amd64" ;;
+  *) arch="other" ;;
+  esac
+
+  if [ "$arch" = "other" ]; then
+      echo "Unsupported architecture $(uname -m). Only x64 binaries are available."
+      exit
+  fi
+
+  if [[ "$install_type" =~ "ref" ]];
+  then
+      echo "ref installations not currently supported"
+      exit 1
+  else
+      download="$APACHE_ANT_BASE_URI/apache-ant-${install_version}-bin.tar.gz"
+      # TODO: derive check url for check as well
+  fi
+
+  # if [ ! -d "${install_path}/bin" ]; then
+      # mkdir -p "${install_path}/bin"
+  # fi
+
+  cd $temp_dir || return 1
+  if ! curl -fLO -# -w "${package_filename}\n" "${download}"; then
+    exit 1
+  fi
+
+  tar -xf "${package_filename}" && cd $package_dir
+
+  if [ ! -d "${ASDF_INSTALL_PATH}" ]; then
+      mkdir -p "${ASDF_INSTALL_PATH}"
+  fi
+
+  mv ./* "${ASDF_INSTALL_PATH}"
+}
+
+install_ant $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
+
