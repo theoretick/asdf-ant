@@ -9,4 +9,4 @@ test:
     - git clone https://github.com/asdf-vm/asdf.git asdf
     - . asdf/asdf.sh
   script:
-    - asdf plugin test ant "$CI_PROJECT_URL.git" ant -version
+    - asdf plugin test ant "$CI_PROJECT_URL.git" --asdf-plugin-gitref "$CI_COMMIT_SHA" ant -version
