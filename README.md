@@ -2,7 +2,7 @@
 
 [Apache Ant](https://ant.apache.org/) plugin for asdf version manager.
 
-![master pipeline status](https://gitlab.com/theoretick/asdf-ant/badges/master/pipeline.svg)
+[![master pipeline status](https://gitlab.com/theoretick/asdf-ant/badges/master/pipeline.svg)](https://gitlab.com/theoretick/asdf-ant/-/commits/master)
 
 ## Requirements
 
