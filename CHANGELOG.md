@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.3] - 2022-02-11
+### Added
+- Added support for arm64 architecture
+
 ## [0.0.2] - 2021-01-06
 ### Added
 - Changelog
